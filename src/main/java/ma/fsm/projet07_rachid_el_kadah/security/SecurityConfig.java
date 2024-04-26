@@ -13,7 +13,10 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
+import org.springframework.security.provisioning.JdbcUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
+
+import javax.sql.DataSource;
 
 
 @Configuration
@@ -32,6 +35,10 @@ public class SecurityConfig {
 //        };
 //    }
     @Bean
+    public JdbcUserDetailsManager jdbcUserDetailsManager(DataSource dataSource) {
+        return new JdbcUserDetailsManager(dataSource);
+    }
+//    @Bean
     public InMemoryUserDetailsManager inMemoryUserDetailsManager() {
         return new InMemoryUserDetailsManager(
                 User.withUsername("user1").password(passwordEncoder.encode("password")).roles("USER").build(),
@@ -39,11 +46,12 @@ public class SecurityConfig {
                 User.withUsername("user3").password(passwordEncoder.encode("password")).roles("USER","ADMIN").build()
         );
     }
+
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
-        httpSecurity.formLogin().loginPage("/login").permitAll();
+        httpSecurity.formLogin().loginPage("/login").defaultSuccessUrl("/").permitAll();
         httpSecurity.rememberMe();
-        httpSecurity.authorizeHttpRequests().requestMatchers("/webjars/**","/h2-console/**").permitAll();
+        httpSecurity.authorizeHttpRequests().requestMatchers("/webjars/**", "/h2-console/**").permitAll();
 //        httpSecurity.authorizeHttpRequests().requestMatchers("/user/**").hasRole("USER");
 //        httpSecurity.authorizeHttpRequests().requestMatchers("/admin/**").hasRole("ADMIN");
         httpSecurity.authorizeHttpRequests().anyRequest().authenticated();
@@ -58,4 +66,6 @@ public class SecurityConfig {
 //                    .build();
 
     }
+
+
 }
