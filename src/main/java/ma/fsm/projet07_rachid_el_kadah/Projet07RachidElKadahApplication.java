@@ -67,7 +67,6 @@ public class Projet07RachidElKadahApplication implements CommandLineRunner {
 			if(u1==null) jdbcUserDetailsManager.createUser(User.withUsername("user11").password(passwordEncoder.encode("password1")).roles("USER").build());
 			if(u1==null) jdbcUserDetailsManager.createUser(User.withUsername("user22").password(passwordEncoder.encode("password1")).roles("USER").build());
 			if(u1==null) jdbcUserDetailsManager.createUser(User.withUsername("user33").password(passwordEncoder.encode("password1")).roles("USER","ADMIN").build());
-
 		};
 	}
 }
