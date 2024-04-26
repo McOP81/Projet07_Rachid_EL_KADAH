@@ -13,3 +13,6 @@
 ![Screenshot 2024-04-26 183201](https://github.com/R-ELKADAH/Projet07_Rachid_EL_KADAH/assets/81963279/7302e47c-9703-4eb9-b63f-ed3d653f246b)
 ![Screenshot 2024-04-26 183304](https://github.com/R-ELKADAH/Projet07_Rachid_EL_KADAH/assets/81963279/8f9c8bc8-4b20-46c1-bd77-42334021e29a)
 ![Screenshot 2024-04-26 200509](https://github.com/R-ELKADAH/Projet07_Rachid_EL_KADAH/assets/81963279/8bdef6c3-676d-41a3-b0c1-570093fe1350)
+![Screenshot 2024-04-26 231002.png](..%2F..%2FPictures%2FScreenshots%2FScreenshot%202024-04-26%20231002.png)
+![Screenshot 2024-04-26 234237.png](..%2F..%2FPictures%2FScreenshots%2FScreenshot%202024-04-26%20234237.png)
+![Screenshot 2024-04-26 234243.png](..%2F..%2FPictures%2FScreenshots%2FScreenshot%202024-04-26%20234243.png)
