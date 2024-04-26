@@ -3,6 +3,7 @@ package ma.fsm.projet07_rachid_el_kadah.security;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -48,5 +49,13 @@ public class SecurityConfig {
         httpSecurity.authorizeHttpRequests().anyRequest().authenticated();
         httpSecurity.exceptionHandling().accessDeniedPage("/notAuthorized");
         return httpSecurity.build();
+//          return httpSecurity
+//                    .formLogin(Customizer.withDefaults())
+//                    .authorizeHttpRequests(ar->ar.requestMatchers("/deletePatient/**").hasRole("ADMIN"))
+//                    .authorizeHttpRequests(ar->ar.requestMatchers("/admin/**").hasRole("ADMIN"))
+//                    .authorizeHttpRequests(ar->ar.requestMatchers("/user/**").hasRole("USER"))
+//                    .authorizeHttpRequests(ar->ar.anyRequest().authenticated())
+//                    .build();
+
     }
 }
