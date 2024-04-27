@@ -1,5 +1,7 @@
 package ma.fsm.projet07_rachid_el_kadah.security;
 
+import lombok.AllArgsConstructor;
+import ma.fsm.projet07_rachid_el_kadah.security.service.UserDetailServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -22,9 +24,12 @@ import javax.sql.DataSource;
 @Configuration
 @EnableWebSecurity
 @EnableMethodSecurity(prePostEnabled = true)
+@AllArgsConstructor
 public class SecurityConfig {
-    @Autowired
+//    @Autowired
     private PasswordEncoder passwordEncoder;
+//    @Autowired
+    private UserDetailServiceImpl userDetailServiceImpl;
 //    @Bean
 //    public UserDetailsService userDetailsService() {
 //        return new UserDetailsService() {
@@ -34,7 +39,7 @@ public class SecurityConfig {
 //            }
 //        };
 //    }
-    @Bean
+//    @Bean
     public JdbcUserDetailsManager jdbcUserDetailsManager(DataSource dataSource) {
         return new JdbcUserDetailsManager(dataSource);
     }
@@ -57,6 +62,7 @@ public class SecurityConfig {
 //        httpSecurity.authorizeHttpRequests().requestMatchers("/admin/**").hasRole("ADMIN");
         httpSecurity.authorizeHttpRequests().anyRequest().authenticated();
         httpSecurity.exceptionHandling().accessDeniedPage("/notAuthorized");
+        httpSecurity.userDetailsService(userDetailServiceImpl);
         return httpSecurity.build();
 //          return httpSecurity
 //                    .formLogin(Customizer.withDefaults())

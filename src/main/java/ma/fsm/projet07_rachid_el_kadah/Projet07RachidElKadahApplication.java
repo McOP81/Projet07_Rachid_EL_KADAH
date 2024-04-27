@@ -2,6 +2,7 @@ package ma.fsm.projet07_rachid_el_kadah;
 
 import ma.fsm.projet07_rachid_el_kadah.entities.Patient;
 import ma.fsm.projet07_rachid_el_kadah.repository.PatientRepository;
+import ma.fsm.projet07_rachid_el_kadah.security.service.AccountService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -56,7 +57,7 @@ public class Projet07RachidElKadahApplication implements CommandLineRunner {
 		return new BCryptPasswordEncoder();
 	}
 
-	@Bean
+//	@Bean
 	CommandLineRunner commandLineRunner(JdbcUserDetailsManager jdbcUserDetailsManager){
 		PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 		return args -> {
@@ -67,6 +68,22 @@ public class Projet07RachidElKadahApplication implements CommandLineRunner {
 			if(u1==null) jdbcUserDetailsManager.createUser(User.withUsername("user11").password(passwordEncoder.encode("password1")).roles("USER").build());
 			if(u1==null) jdbcUserDetailsManager.createUser(User.withUsername("user22").password(passwordEncoder.encode("password1")).roles("USER").build());
 			if(u1==null) jdbcUserDetailsManager.createUser(User.withUsername("user33").password(passwordEncoder.encode("password1")).roles("USER","ADMIN").build());
+		};
+	}
+
+//	@Bean
+	CommandLineRunner commandLineRunnerUserDetails(AccountService accountService){
+		return args -> {
+            accountService.addNewRole("USER");
+			accountService.addNewRole("ADMIN");
+			accountService.addNewUser("user1","password","user1@gmail.com","password");
+			accountService.addNewUser("user2","password","user2@gmail.com","password");
+			accountService.addNewUser("user3","password","user3@gmail.com","password");
+
+			accountService.addRoleToUser("user1","USER");
+			accountService.addRoleToUser("user2","USER");
+			accountService.addRoleToUser("user3","USER");
+			accountService.addRoleToUser("user3","ADMIN");
 		};
 	}
 }
